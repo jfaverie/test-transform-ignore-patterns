@@ -1,9 +1,19 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component, ChangeEvent } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import { Checkbox } from "@material-ui/core/es";
 
 class App extends Component {
-  render() {
+  public readonly state = {
+    checked: false
+  };
+  private toggleRadio = (
+    e: ChangeEvent<HTMLInputElement>,
+    checked: boolean
+  ) => {
+    this.setState({ checked }, () => console.log({ checked }));
+  };
+  public render() {
     return (
       <div className="App">
         <header className="App-header">
@@ -19,6 +29,7 @@ class App extends Component {
           >
             Learn React
           </a>
+          <Checkbox checked={this.state.checked} onChange={this.toggleRadio} />
         </header>
       </div>
     );
